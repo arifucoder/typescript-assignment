@@ -30,6 +30,10 @@ interface ICourse {
 	isPublished: boolean;
 }
 
-function getPopularCourses(courses: ICourse[], minStudents: number) {
-	return courses.filter((course) => course.isPublished && course.students >= minStudents);
+function getPopularCourses(courses: ICourse[], minStudents: number): ICourse[] {
+	return courses.filter((course: ICourse): boolean => course.isPublished && course.students >= minStudents);
+}
+
+function pluckValues<T, K extends keyof T>(items: T[], key: K): T[K][] {
+	return items.map((item: T): T[K] => item[key]);
 }
