@@ -21,17 +21,17 @@ function formatCoordinate(coordinate: readonly [number, number, string]): string
 }
 
 function concatenateArrays<T>(...arrays: T[][]): T[] {
-	return arrays.flat();
+	return arrays.reduce((combined: T[], array: T[]): T[] => combined.concat(array), []);
 }
 
-interface ICourse {
+interface Course {
 	title: string;
 	students: number;
 	isPublished: boolean;
 }
 
-function getPopularCourses(courses: ICourse[], minStudents: number): ICourse[] {
-	return courses.filter((course: ICourse): boolean => course.isPublished && course.students >= minStudents);
+function getPopularCourses(courses: Course[], minStudents: number): Course[] {
+	return courses.filter((course: Course): boolean => course.isPublished && course.students >= minStudents);
 }
 
 function pluckValues<T, K extends keyof T>(items: T[], key: K): T[K][] {
